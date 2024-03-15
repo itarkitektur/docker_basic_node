@@ -1,0 +1,45 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Install backend dependencies
+      run: npm install
+      working-directory: ./backend
+    - name: Run backend tests
+      run: npm test
+      working-directory: ./backend
+    - name: Build backend
+      run: npm run build # Assumes you have a build script
+      working-directory: ./backend
+
+  frontend:
+    runs-on: ubuntu-latest
+    needs: backend
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Install frontend dependencies
+      run: npm install
+      working-directory: ./frontend
+    - name: Run frontend tests
+      run: npm test
+      working-directory: ./frontend
+    - name: Build frontend
+      run: npm run build
+      working-directory: ./frontend
