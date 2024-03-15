@@ -21,7 +21,7 @@ services:
   db:
     image: mysql:latest
     platform: linux/arm64/v8
-    # TODO NOTE! Chosing a different port to expose because MySQL is already using 3306 on my machine
+    # TODO NOTE: Chosing a different port to expose because MySQL is already using 3306 on my machine
     ports:
       - "3307:3306"
     environment:

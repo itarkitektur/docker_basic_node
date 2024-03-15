@@ -2,9 +2,20 @@
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Counter from './lib/Counter.svelte'
+  import { onMount } from 'svelte';
+
+  let responseFromServer = "";
+
+  onMount(async () => {
+    const backendUrl = 'http://localhost:8080/data';
+    const response = await fetch(backendUrl);
+    const result = await response.json();
+    responseFromServer = result.data;
+  });
 </script>
 
 <main>
+  <h1>{responseFromServer}</h1>
   <div>
     <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
       <img src={viteLogo} class="logo" alt="Vite Logo" />

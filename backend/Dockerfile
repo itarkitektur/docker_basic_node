@@ -1,6 +1,6 @@
 # Use the official Node.js 16 image.
 FROM node:16
-
+    
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
