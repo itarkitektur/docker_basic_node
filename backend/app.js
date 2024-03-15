@@ -7,7 +7,6 @@ app.use(cors({
     origin: 'http://localhost:5173'
 }));
 
-
 import mysql from 'mysql2/promise';
 
 const connection = await mysql.createConnection({

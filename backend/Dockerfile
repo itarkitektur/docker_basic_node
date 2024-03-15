@@ -1,20 +1,16 @@
-# Use the official Node.js 16 image.
-FROM node:16
-    
-# Set the working directory inside the container
+FROM node:16.13.1
+
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json and install dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
+
+# Install nodemon globally
+RUN npm install -g nodemon
 
 # Copy the rest of your application's code
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 8080
+CMD npm config set cache-min 9999999 && npm run dev
 
-# Command to run your app
-CMD [ "node", "app.js" ]
