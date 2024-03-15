@@ -21,9 +21,6 @@ jobs:
     - name: Run backend tests
       run: npm test
       working-directory: ./backend
-    - name: Build backend
-      run: npm run build # Assumes you have a build script
-      working-directory: ./backend
 
   frontend:
     runs-on: ubuntu-latest
